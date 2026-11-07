@@ -148,3 +148,40 @@
 .menu-item.danger {
   color: var(--error);
 }
+
+/* Keyboard shortcuts dialog */
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.shortcuts h3 {
+  margin: 0 0 6px;
+}
+.shortcuts dl {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+  font: 400 13.5px/20px var(--font-ui);
+}
+.shortcut-row dt {
+  color: var(--ink-body);
+}
+.shortcut-row dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.shortcut-row .plus {
+  color: var(--ink-3);
+  padding: 0 3px;
+}

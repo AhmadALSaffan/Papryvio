@@ -83,3 +83,14 @@
   display: flex;
   flex-direction: column;
 }
+
+.zoom-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.zoom-value {
+  min-width: 56px;
+  justify-content: center;
+  font-family: var(--font-mono);
+}

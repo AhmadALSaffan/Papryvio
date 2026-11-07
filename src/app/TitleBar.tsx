@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { useAppStore } from './store';
+import { useLayoutStore } from './layout';
+import { Icon } from '../shared/ui/Icon';
 import { useT } from '../shared/i18n';
 
 /** Custom title bar with real window controls and a drag region. */
@@ -10,6 +12,13 @@ export function TitleBar() {
   const setTab = useAppStore((s) => s.setTab);
   const collection = useAppStore((s) => s.collections.find((c) => c.id === s.activeCollectionId) ?? null);
   const [maximized, setMaximized] = useState(false);
+  const libraryOpen = useAppStore((s) => !s.libraryCollapsed);
+  const toggleLibrary = useAppStore((s) => s.toggleLibrary);
+  const readerOpen = useLayoutStore((s) => !s.evidenceHidden);
+  const toggleReader = useLayoutStore((s) => s.toggleEvidence);
+  const zoom = useLayoutStore((s) => s.zoom);
+  const setZoom = useLayoutStore((s) => s.setZoom);
+  const openShortcuts = useLayoutStore((s) => s.setShortcutsOpen);
 
   useEffect(() => {
     const win = getCurrentWindow();
@@ -43,6 +52,22 @@ export function TitleBar() {
           {collection.name}
         </span>
       )}
+      <div className="titlebar-toggles">
+        {zoom !== 1 && (
+          <button className="zoom-badge" onClick={() => setZoom(1)} title={t('layout.zoomReset')}>
+            {Math.round(zoom * 100)}%
+          </button>
+        )}
+        <button onClick={() => openShortcuts(true)} title={`${t('shortcuts.title')} (Ctrl+/)`} aria-label={t('shortcuts.title')}>
+          <Icon name="keyboard" size={15} />
+        </button>
+        <button onClick={toggleLibrary} aria-pressed={libraryOpen} title={`${t('layout.toggleLibrary')} (Ctrl+B)`} aria-label={t('layout.toggleLibrary')}>
+          <Icon name="panelStart" size={15} />
+        </button>
+        <button onClick={toggleReader} aria-pressed={readerOpen} title={`${t('layout.toggleReader')} (Ctrl+J)`} aria-label={t('layout.toggleReader')}>
+          <Icon name="panelEnd" size={15} />
+        </button>
+      </div>
       <div className="window-controls">
         <button onClick={() => void win().minimize()} aria-label={t('window.minimize')} title={t('window.minimize')}>
           <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">

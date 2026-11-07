@@ -6,11 +6,17 @@ import { Icon } from '../../shared/ui/Icon';
 import { PdfViewer, type Zoom } from './PdfViewer';
 import './reader.css';
 
-export function EvidencePane() {
+export function EvidencePane({ drawer = false, width }: { drawer?: boolean; width?: number }) {
   const t = useT();
   const reader = useAppStore((s) => s.reader);
   return (
-    <aside className="evidence" data-region="evidence" tabIndex={-1} aria-label={t('reader.title')}>
+    <aside
+      className={`evidence${drawer ? ' drawer' : ''}`}
+      style={drawer && width ? { width } : undefined}
+      data-region="evidence"
+      tabIndex={-1}
+      aria-label={t('reader.title')}
+    >
       {reader ? (
         <Reader key={reader.documentId} documentId={reader.documentId} page={reader.page} />
       ) : (

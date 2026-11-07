@@ -358,3 +358,25 @@
   color: var(--burgundy);
   font-weight: 600;
 }
+
+/* One-click questions about the page open in the reader. */
+.quick-asks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.quick-ask {
+  border: 1px solid var(--rule-strong);
+  background: var(--paper-bright);
+  color: var(--ink-body);
+  border-radius: 999px;
+  padding: 3px 11px;
+  font: 400 12.5px/18px var(--font-ui);
+}
+.quick-ask:hover {
+  border-color: var(--burgundy-soft);
+  color: var(--burgundy);
+  background: var(--burgundy-tint);
+}

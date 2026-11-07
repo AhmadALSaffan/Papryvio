@@ -39,15 +39,28 @@ impl AppPaths {
     }
 }
 
+#[cfg(windows)]
+fn is_reparse_point(meta: &fs::Metadata) -> bool {
+    use std::os::windows::fs::MetadataExt;
+    const FILE_ATTRIBUTE_REPARSE_POINT: u32 = 0x400;
+    meta.file_attributes() & FILE_ATTRIBUTE_REPARSE_POINT != 0
+}
+
+#[cfg(not(windows))]
+fn is_reparse_point(_meta: &fs::Metadata) -> bool {
+    false
+}
+
 pub struct LocalFileStore {
     paths: AppPaths,
-    library_canonical: PathBuf,
 }
 
 impl LocalFileStore {
     pub fn new(paths: AppPaths) -> std::io::Result<Self> {
-        let library_canonical = fs::canonicalize(&paths.library)?;
-        Ok(Self { paths, library_canonical })
+        if !fs::metadata(&paths.library)?.is_dir() {
+            return Err(std::io::Error::other("library is not a folder"));
+        }
+        Ok(Self { paths })
     }
 
     fn staged_path(&self, id: &DocumentId) -> PathBuf {
@@ -133,12 +146,14 @@ impl FileStore for LocalFileStore {
             .filter(|n| !n.is_empty() && !n.contains(['/', '\\']) && !n.contains("..") && n.ends_with(".pdf"))
             .ok_or_else(|| AppError::not_allowed("path outside library"))?;
         let candidate = self.paths.library.join(name);
-        // If the file exists, also verify the canonical path (symlinks, junctions).
-        if let Ok(canon) = fs::canonicalize(&candidate) {
-            if !canon.starts_with(&self.library_canonical) {
+        // The name is a single plain component, so the only way out of the library is a link. Links and
+        // reparse points (symlinks, junctions) are refused. Comparing canonical paths is not used: Windows
+        // file-system redirection (e.g. when started from a packaged app) resolves a plain file inside the
+        // library to a different location than the folder itself.
+        if let Ok(meta) = fs::symlink_metadata(&candidate) {
+            if meta.file_type().is_symlink() || is_reparse_point(&meta) {
                 return Err(AppError::not_allowed("path outside library"));
             }
-            return Ok(canon);
         }
         Ok(candidate)
     }
@@ -211,6 +226,25 @@ mod tests {
         assert!(s.resolve_managed("../x.pdf").is_err());
         assert!(s.resolve_managed("library/a/b.pdf").is_err());
         assert!(s.resolve_managed("library/ok.pdf").is_ok());
+    }
+
+    #[test]
+    fn resolve_accepts_plain_files_and_refuses_links() {
+        let (d, s) = store();
+        fs::write(s.paths.library.join("plain.pdf"), b"%PDF-1.7").unwrap();
+        assert!(s.resolve_managed("library/plain.pdf").unwrap().is_file());
+
+        let outside = d.path().join("secret.pdf");
+        fs::write(&outside, b"%PDF-1.7").unwrap();
+        let link = s.paths.library.join("link.pdf");
+        #[cfg(windows)]
+        let made = std::os::windows::fs::symlink_file(&outside, &link).is_ok();
+        #[cfg(unix)]
+        let made = std::os::unix::fs::symlink(&outside, &link).is_ok();
+        // Creating symlinks on Windows needs Developer Mode or admin rights; skip the check without them.
+        if made {
+            assert!(s.resolve_managed("library/link.pdf").is_err());
+        }
     }
 
     #[test]

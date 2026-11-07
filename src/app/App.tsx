@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { EvidencePane } from '../features/reader/EvidencePane';
-import { LibrarySidebar } from '../features/library/LibrarySidebar';
+import { useEffect, type CSSProperties } from 'react';
 import { Onboarding } from '../features/onboarding/Onboarding';
 import { SettingsDialog } from '../features/settings/SettingsDialog';
-import { Workspace } from '../features/workspace/Workspace';
 import { useT } from '../shared/i18n';
 import { Icon } from '../shared/ui/Icon';
 import { Toasts } from '../shared/ui/Toasts';
 import { AppDialogs } from './AppDialogs';
+import { useLayoutStore } from './layout';
+import { Shell, useMetrics } from './Shell';
+import { ShortcutsDialog } from './ShortcutsDialog';
 import { useAppStore } from './store';
 import { useRagStore } from './ragStore';
 import { TitleBar } from './TitleBar';
@@ -18,7 +18,7 @@ export function App() {
   const ready = useAppStore((s) => s.ready);
   const bootError = useAppStore((s) => s.bootError);
   const locale = useAppStore((s) => s.locale);
-  const collapsed = useAppStore((s) => s.libraryCollapsed);
+  const metrics = useMetrics();
   const init = useAppStore((s) => s.init);
   const t = useT();
   useShortcuts();
@@ -26,6 +26,13 @@ export function App() {
   useEffect(() => {
     void init().then(() => useRagStore.getState().init());
   }, [init]);
+
+  useEffect(() => {
+    const onResize = () => useLayoutStore.getState().setViewport(window.innerWidth);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   // The chrome direction follows the interface language.
   useEffect(() => {
@@ -44,18 +51,16 @@ export function App() {
   }
 
   return (
-    <div className={`app${collapsed ? ' library-collapsed' : ''}`}>
+    <div
+      className={`app${metrics.libraryCollapsed ? ' library-collapsed' : ''}`}
+      style={{ '--library-w': `${metrics.libraryW}px` } as CSSProperties}
+    >
       <TitleBar />
-      {ready && (
-        <div className="shell">
-          <LibrarySidebar />
-          <Workspace />
-          <EvidencePane />
-        </div>
-      )}
+      {ready && <Shell />}
       <DropOverlay />
       <AppDialogs />
       <SettingsDialog />
+      <ShortcutsDialog />
       <Onboarding />
       <Toasts />
       <LiveRegion />

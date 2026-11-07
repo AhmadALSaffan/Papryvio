@@ -22,6 +22,8 @@
   padding: 0 14px;
   width: var(--library-w);
   flex: none;
+  min-width: 0;
+  overflow: hidden;
 }
 .library-collapsed .brand {
   width: auto;
@@ -112,32 +114,91 @@
   color: #fff;
 }
 
-/* Three-pane shell */
+/* Three-pane shell; column widths come from the layout store (Shell.tsx). */
 .shell {
+  position: relative;
+  overflow: hidden;
   flex: 1;
   min-height: 0;
   display: grid;
   grid-template-rows: minmax(0, 1fr);
-  grid-template-columns: var(--library-w) minmax(360px, 1fr) minmax(420px, 600px);
 }
-.library-collapsed .shell {
-  grid-template-columns: var(--library-rail-w) minmax(360px, 1fr) minmax(420px, 620px);
+.drawer-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 29;
+  background: rgba(36, 37, 33, 0.14);
 }
-@media (max-width: 1360px) {
-  .shell {
-    grid-template-columns: 260px minmax(340px, 1fr) minmax(400px, 46%);
-  }
-  .brand {
-    width: 260px;
-  }
+.splitter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  z-index: 25;
+  cursor: col-resize;
+  touch-action: none;
+  outline: none;
 }
-@media (max-width: 1120px) {
-  .shell {
-    grid-template-columns: 240px minmax(320px, 1fr) minmax(360px, 44%);
-  }
-  .brand {
-    width: 240px;
-  }
+.splitter::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 3px;
+  width: 2px;
+  background: transparent;
+  transition: background 0.12s ease 0.08s;
+}
+.splitter:hover::after,
+.splitter:focus-visible::after,
+.resizing .splitter::after {
+  background: var(--burgundy-soft);
+}
+.splitter:focus-visible::after {
+  background: var(--burgundy);
+}
+.splitter.floating {
+  z-index: 31;
+}
+body.resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+/* Canvases and the PDF text layer must not swallow the pointer mid-drag. */
+body.resizing .shell > :not(.splitter) {
+  pointer-events: none;
+}
+.titlebar-toggles {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-inline-end: 8px;
+}
+.titlebar-toggles button {
+  width: 30px;
+  height: 26px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.titlebar-toggles button:hover {
+  background: var(--desk);
+  color: var(--ink);
+}
+.titlebar-toggles button[aria-pressed='true'] {
+  color: var(--burgundy);
+}
+.titlebar-toggles .zoom-badge {
+  font: 500 11px/16px var(--font-mono);
+  color: var(--ink-2);
+  padding: 0 6px;
+  border-radius: var(--radius-sm);
+  border: 0;
+  background: transparent;
+  width: auto;
 }
 
 .drop-overlay {

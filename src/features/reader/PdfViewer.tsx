@@ -96,10 +96,17 @@ export function PdfViewer({
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => setWidth(el.clientWidth));
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const ro = new ResizeObserver(() => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => setWidth(el.clientWidth), 120);
+    });
     ro.observe(el);
     setWidth(el.clientWidth);
-    return () => ro.disconnect();
+    return () => {
+      if (timer) clearTimeout(timer);
+      ro.disconnect();
+    };
   }, []);
 
   const render = useCallback(

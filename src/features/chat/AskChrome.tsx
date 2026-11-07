@@ -219,6 +219,16 @@ export function Composer() {
 
   return (
     <div className="composer-wrap" data-region="composer" tabIndex={-1}>
+      {viewing && hasModel && !draft && !asking && (
+        <div className="quick-asks" aria-label={t('composer.quickPage', { page: viewing })}>
+          <span className="t-meta">{t('composer.quickPage', { page: viewing })}</span>
+          {(['composer.quick.summarize', 'composer.quick.explain', 'composer.quick.terms'] as const).map((k) => (
+            <button key={k} className="quick-ask" onClick={() => void ask(t(k))}>
+              {t(k)}
+            </button>
+          ))}
+        </div>
+      )}
       <div className={`composer${ready === 0 ? ' disabled' : ''}`}>
         <label htmlFor="composer-input" className="sr-only">
           {placeholder}

@@ -78,12 +78,30 @@ const paths = {
   trash: <path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 9h6.6l.7-9" />,
   open: <path d="M5 3h6.5v6.5M11.5 3L3 11.5" />,
   fit: <path d="M2 5V2h3M11 2h3v3M14 11v3h-3M5 14H2v-3" />,
+  panelStart: (
+    <>
+      <rect x="1.5" y="2.5" width="13" height="11" rx="1.5" />
+      <path d="M6 2.5v11" />
+    </>
+  ),
+  panelEnd: (
+    <>
+      <rect x="1.5" y="2.5" width="13" height="11" rx="1.5" />
+      <path d="M10 2.5v11" />
+    </>
+  ),
+  keyboard: (
+    <>
+      <rect x="1.5" y="4" width="13" height="8.5" rx="1.5" />
+      <path d="M4 6.8h.01M6.5 6.8h.01M9 6.8h.01M11.5 6.8h.01M5 9.8h6" />
+    </>
+  ),
 } as const;
 
 export type IconName = keyof typeof paths;
 
 export function Icon({ name, size = 16, strokeWidth = 1.4, ...rest }: { name: IconName; size?: number; strokeWidth?: number } & SVGProps<SVGSVGElement>) {
-  const mirror = name === 'chevronLeft' || name === 'chevronRight';
+  const mirror = name === 'chevronLeft' || name === 'chevronRight' || name === 'panelStart' || name === 'panelEnd';
   return (
     <svg
       width={size}

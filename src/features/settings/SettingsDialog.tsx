@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppStore } from '../../app/store';
+import { useLayoutStore, ZOOM } from '../../app/layout';
+import { Icon } from '../../shared/ui/Icon';
 import { api } from '../../shared/ipc/commands';
 import { formatBytes, useLocale, useT } from '../../shared/i18n';
 import { Dialog } from '../../shared/ui/Dialog';
@@ -17,6 +19,11 @@ export function SettingsDialog() {
   const update = useAppStore((s) => s.updateSettings);
   const fail = useAppStore((s) => s.fail);
   const setOnboardingOpen = useAppStore((s) => s.setOnboardingOpen);
+  const zoom = useLayoutStore((s) => s.zoom);
+  const zoomBy = useLayoutStore((s) => s.zoomBy);
+  const setZoom = useLayoutStore((s) => s.setZoom);
+  const resetWidths = useLayoutStore((s) => s.resetWidths);
+  const openShortcuts = useLayoutStore((s) => s.setShortcutsOpen);
   const [report, setReport] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -60,6 +67,40 @@ export function SettingsDialog() {
           <input type="checkbox" checked={settings.enterToSend} onChange={(e) => void update({ enterToSend: e.target.checked })} />
           <span>{settings.enterToSend ? t('settings.enterToSend') : t('settings.enterToSendOff')}</span>
         </label>
+      </section>
+
+      <section className="settings-section">
+        <h3>{t('settings.interface')}</h3>
+        <div className="settings-row">
+          <span>{t('settings.zoom')}</span>
+          <div className="zoom-control" dir="ltr">
+            <button className="btn btn-sm" onClick={() => zoomBy(-ZOOM.step)} disabled={zoom <= ZOOM.min} aria-label={t('settings.zoomOut')} title={`${t('settings.zoomOut')} (Ctrl+−)`}>
+              <Icon name="minus" size={13} />
+            </button>
+            <button className="btn btn-sm zoom-value" onClick={() => setZoom(1)} title={t('layout.zoomReset')}>
+              {Math.round(zoom * 100)}%
+            </button>
+            <button className="btn btn-sm" onClick={() => zoomBy(ZOOM.step)} disabled={zoom >= ZOOM.max} aria-label={t('settings.zoomIn')} title={`${t('settings.zoomIn')} (Ctrl++)`}>
+              <Icon name="plus" size={13} />
+            </button>
+          </div>
+        </div>
+        <p className="t-meta">{t('settings.layoutNote')}</p>
+        <div className="settings-inline">
+          <button className="btn" onClick={resetWidths}>
+            {t('settings.resetLayout')}
+          </button>
+          <button
+            className="btn"
+            onClick={() => {
+              setOpen(false);
+              openShortcuts(true);
+            }}
+          >
+            <Icon name="keyboard" size={14} />
+            {t('settings.shortcuts')} <span className="kbd">Ctrl+/</span>
+          </button>
+        </div>
       </section>
 
       <section className="settings-section">

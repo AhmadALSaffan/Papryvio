@@ -6,6 +6,33 @@
   min-width: 0;
   background: var(--desk);
 }
+.evidence.drawer {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: 30;
+  max-width: calc(100% - 48px);
+  border-inline-start: 1px solid var(--rule-strong);
+  box-shadow: -12px 0 32px rgba(36, 37, 33, 0.16);
+  animation: drawer-in 0.18s ease-out;
+}
+:root[dir='rtl'] .evidence.drawer {
+  box-shadow: 12px 0 32px rgba(36, 37, 33, 0.16);
+}
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--drawer-from, 1) * 24px));
+  }
+}
+:root[dir='rtl'] .evidence.drawer {
+  --drawer-from: -1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .evidence.drawer {
+    animation: none;
+  }
+}
 .pane-head {
   height: var(--pane-header-h);
   flex: none;

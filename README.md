@@ -62,6 +62,10 @@ The whole interface is Arabic and right-to-left from the ground up (English is o
 - 🗂️ **Collections** — Group papers and scope a question to a collection or to the papers you pick; Papryvio says which papers were searched and which weren't (and why)
 - ⏯️ **Jobs that survive a restart** — Extract → index → embed run as persisted jobs with checkpoints: pause, resume, cancel, retry, and pick up where they stopped after the app closes
 - 🧠 **Any model** — ChatGPT (official sign-in), GitHub Copilot (device sign-in + the official Copilot SDK), OpenAI, Anthropic, Google Gemini, xAI Grok, Mistral, DeepSeek, OpenRouter, Groq, Together AI, Fireworks AI, Cerebras, GitHub Models, Hugging Face, NVIDIA NIM, Moonshot Kimi, Qwen, Z.ai GLM, Cohere, any OpenAI-compatible server, Ollama and LiteLLM. Model lists are fetched from the service, so you only pick from a list
+- ↔️ **A layout you size yourself** — Drag the lines between the library, the answer and the reader (double-click to reset); sizes are remembered. Narrow windows slide the reader over the answer instead of squeezing it. `Ctrl+B` and `Ctrl+J` show or hide the library and the reader
+- 🔍 **Interface size** — `Ctrl` `+` / `−` / `0`, or Settings → Interface, from 80% to 150%
+- ⚡ **One-click questions about the open page** — *Summarize this page*, *Explain this page simply*, *What are the key terms on this page?*
+- ⌨️ **Every shortcut in one list** — `Ctrl+/` or `F1`, and Arabic keyboard layouts work with every shortcut
 - 👀 **Always know who answers** — The question box shows the model that will answer (`ChatGPT · gpt-…`); click it to change
 - 🧭 **A guide and next steps** — A five-step welcome (language, model, first collection, first paper, first question) and a *Next steps* list on each paper
 - 💾 **Conversations kept** — Every question, attempt, evidence bundle and citation is saved; retry an answer or cancel one mid-stream
