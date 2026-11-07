@@ -1,0 +1,77 @@
+{
+  "dataset": "../evaluation/datasets/smoke.jsonl",
+  "papers": [
+    "two-pages.pdf"
+  ],
+  "k": 5,
+  "index_ms": 119,
+  "embedding_model": null,
+  "chat_model": "qwen3:4b",
+  "chunker_version": 1,
+  "prompt_version": 1,
+  "retrieval": {
+    "lexical": {
+      "questions": 3,
+      "hit_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "median_ms": 1,
+      "p95_ms": 1
+    }
+  },
+  "answers": [
+    {
+      "id": "s1",
+      "kind": "direct",
+      "answerable": true,
+      "state": "answered",
+      "error": null,
+      "claims": 1,
+      "citations": 1,
+      "quotes_located": 1,
+      "dropped_claims": 0,
+      "unanswerable_handled": null,
+      "ms": 5535
+    },
+    {
+      "id": "s2",
+      "kind": "paraphrase",
+      "answerable": true,
+      "state": "answered",
+      "error": null,
+      "claims": 1,
+      "citations": 1,
+      "quotes_located": 1,
+      "dropped_claims": 0,
+      "unanswerable_handled": null,
+      "ms": 1093
+    },
+    {
+      "id": "s3",
+      "kind": "arabic_on_english",
+      "answerable": true,
+      "state": "answered",
+      "error": null,
+      "claims": 1,
+      "citations": 1,
+      "quotes_located": 0,
+      "dropped_claims": 0,
+      "unanswerable_handled": null,
+      "ms": 1903
+    },
+    {
+      "id": "s4",
+      "kind": "unanswerable",
+      "answerable": false,
+      "state": "no_evidence",
+      "error": null,
+      "claims": 0,
+      "citations": 0,
+      "quotes_located": 0,
+      "dropped_claims": 0,
+      "unanswerable_handled": true,
+      "ms": 1
+    }
+  ],
+  "os": "windows x86_64"
+}

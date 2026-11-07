@@ -1,0 +1,6 @@
+// Smoke dataset over the generated test fixture (src-tauri/tests/fixtures/two-pages.pdf).
+// It checks that the pipeline runs end to end; it is NOT a quality benchmark.
+{"id":"s1","kind":"direct","question":"How much did hybrid retrieval improve recall?","paper":"two-pages.pdf","pages":[2],"contains":"4.1"}
+{"id":"s2","kind":"paraphrase","question":"Why should every claim point to a page?","paper":"two-pages.pdf","pages":[1],"contains":"cite"}
+{"id":"s3","kind":"arabic_on_english","question":"ما مقدار تحسن الاسترجاع الهجين عند k = 20؟","paper":"two-pages.pdf","pages":[2]}
+{"id":"s4","kind":"unanswerable","question":"Which GPU was used for training?","paper":"two-pages.pdf","answerable":false}

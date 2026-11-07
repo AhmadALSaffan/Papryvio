@@ -1,0 +1,59 @@
+/* Papryvio design tokens — from the approved workspace design (03 Focus states & tokens). */
+:root {
+  /* Color */
+  --pine: #dfe8df;
+  --pine-hover: #e9f0e9;
+  --pine-press: #cfdbd0;
+  --pine-rule: #c5d2c6;
+  --pine-field: #e8efe8;
+  --pine-input: #f1f5f0;
+  --pine-dash: #afc0b1;
+  --burgundy: #561f32;
+  --burgundy-hover: #6b2840;
+  --burgundy-tint: #efe3e6;
+  --burgundy-soft: #b48a97;
+  --butter: #f7e6a1;
+  --butter-rule: #d9be55;
+  --paper: #fcfaf4;
+  --paper-bright: #fffefa;
+  --paper-band: #f8f5ec;
+  --chrome: #f4f1e8;
+  --desk: #ece8dd;
+  --rule: #e4dfd2;
+  --rule-strong: #d6d0c2;
+  --rule-dash: #b5ae9f;
+  --ink: #242521;
+  --ink-body: #3e3f3a;
+  --ink-2: #55564f;
+  --ink-3: #6b6c64;
+  --ink-disabled: #b5b0a4;
+  --ok: #2f5d3f;
+  --warn: #7a4b0c;
+  --warn-bg: #f8f1e2;
+  --warn-rule: #e2d2b0;
+  --error: #8f2a1c;
+  --error-bg: #f8e9e5;
+  --error-rule: #e3c1b9;
+
+  /* Type */
+  --font-ui: 'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'IBM Plex Sans Arabic', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Layout */
+  --titlebar-h: 36px;
+  --pane-header-h: 52px;
+  --library-w: 280px;
+  --library-rail-w: 64px;
+  --evidence-w: minmax(420px, 600px);
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 8px;
+
+  /* Focus ring: 2px Ink with a 2px gap in the surface color. */
+  --ring-gap: var(--paper);
+}
+
+:root[dir='rtl'] {
+  --font-ui: 'IBM Plex Sans Arabic', 'IBM Plex Sans', system-ui, sans-serif;
+}

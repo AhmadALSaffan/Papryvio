@@ -1,0 +1,9 @@
+node_modules/
+dist/
+src-tauri/target/
+src-tauri/resources/pdfium/
+*.log
+.DS_Store
+public/pdf-assets/
+src-tauri/gen/schemas/
+*.zip

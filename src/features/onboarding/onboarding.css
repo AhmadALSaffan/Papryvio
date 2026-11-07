@@ -1,0 +1,143 @@
+.ob {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ob p {
+  margin: 0;
+}
+.ob-progress {
+  display: flex;
+  gap: 6px;
+}
+.ob-progress span {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--rule);
+}
+.ob-progress span.done {
+  background: var(--burgundy-soft);
+}
+.ob-progress span.current {
+  background: var(--burgundy);
+}
+.ob-hero {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.ob-hero img {
+  border-radius: 12px;
+  border: 1px solid var(--rule);
+  flex: none;
+}
+.ob-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: 400 14px/21px var(--font-ui);
+}
+.ob-points li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.ob-points svg {
+  margin-top: 4px;
+  flex: none;
+  color: var(--ok);
+}
+.ob-lang {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ob-lang legend {
+  margin-bottom: 8px;
+}
+.lang-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  font: 600 15px/20px var(--font-ui);
+  cursor: pointer;
+}
+.lang-card.selected {
+  border-color: var(--burgundy);
+  background: var(--burgundy-tint);
+  color: var(--burgundy);
+}
+.lang-card input {
+  accent-color: var(--burgundy);
+}
+.lang-card:focus-within {
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
+}
+.ob-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 8px;
+}
+.ob-inline {
+  display: flex;
+  gap: 8px;
+}
+.ob-inline .field {
+  height: 36px;
+}
+.ob-inline .btn {
+  height: 36px;
+}
+.ob-existing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dropzone.small {
+  padding: 24px;
+}
+.ob-import-status {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-band);
+}
+.ob-summary {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.ob-summary li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule);
+  font: 400 14px/20px var(--font-ui);
+}
+.ob-summary li.completed svg {
+  color: var(--ok);
+}
+.ob-summary li.pending,
+.ob-summary li.skipped {
+  color: var(--ink-2);
+}

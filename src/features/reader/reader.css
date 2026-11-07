@@ -1,0 +1,206 @@
+.evidence {
+  --ring-gap: var(--chrome);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background: var(--desk);
+}
+.pane-head {
+  height: var(--pane-header-h);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  background: var(--chrome);
+  border-bottom: 1px solid var(--rule);
+}
+.pane-title {
+  font: 500 13px/18px var(--font-ui);
+  color: var(--ink-2);
+}
+.evidence-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  font: 400 14px/21px var(--font-ui);
+  color: var(--ink-2);
+}
+.evidence-empty span {
+  max-width: 300px;
+}
+.pager {
+  display: flex;
+  gap: 4px;
+}
+.reader-band {
+  flex: none;
+  padding: 12px 20px;
+  background: var(--chrome);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.reader-doc {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.reader-title {
+  font: 600 15px/21px var(--font-serif);
+  overflow-wrap: anywhere;
+}
+.reader-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.reader-tools .btn {
+  height: 26px;
+  font-size: 12px;
+}
+.reader-tools .btn-icon {
+  width: 26px;
+}
+.reader-tools .btn[aria-pressed='true'] {
+  background: var(--paper);
+  border-color: var(--burgundy-soft);
+  color: var(--burgundy);
+}
+.page-box {
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 5px;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: 500 12px/16px var(--font-mono);
+  direction: ltr;
+}
+.page-box label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.page-box input {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: end;
+  padding: 0;
+  width: auto;
+}
+.page-box input:focus-visible {
+  box-shadow: none;
+  text-decoration: underline;
+}
+.page-box:focus-within {
+  box-shadow: 0 0 0 2px var(--chrome), 0 0 0 4px var(--ink);
+}
+.zoom-value {
+  font-size: 12px;
+  min-width: 42px;
+  text-align: center;
+  color: var(--ink-2);
+}
+.pdf-scroll {
+  --ring-gap: var(--desk);
+  flex: 1;
+  min-height: 0;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  user-select: text;
+}
+.pdf-scroll:focus-visible {
+  border-radius: 0;
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.pdf-page {
+  position: relative;
+  flex: none;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(36, 37, 33, 0.12);
+  --user-unit: 1;
+  --total-scale-factor: calc(var(--scale-factor) * var(--user-unit));
+  --scale-round-x: 1px;
+  --scale-round-y: 1px;
+}
+.pdf-page[hidden] {
+  display: none;
+}
+.pdf-page canvas {
+  display: block;
+}
+.pdf-message {
+  align-self: center;
+  margin-top: 40px;
+  font: 400 14px/21px var(--font-ui);
+  color: var(--ink-2);
+}
+.pdf-message.error {
+  color: var(--error);
+}
+.textLayer ::selection {
+  background: rgba(86, 31, 50, 0.25);
+}
+
+.hl-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.hl {
+  position: absolute;
+  background: var(--butter);
+  mix-blend-mode: multiply;
+  border-radius: 2px;
+}
+.hl-marker {
+  position: absolute;
+  width: 20px;
+  height: 17px;
+  border-radius: 3px;
+  background: var(--burgundy);
+  color: var(--paper);
+  font: 600 10.5px/17px var(--font-mono);
+  text-align: center;
+}
+.evidence-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 400 12px/16px var(--font-ui);
+  color: var(--ink-2);
+}
+.legend-swatch {
+  width: 22px;
+  height: 12px;
+  background: var(--butter);
+  border: 1px solid var(--butter-rule);
+  border-radius: 2px;
+  flex: none;
+}
+.evidence-excerpt {
+  font: italic 400 13px/20px var(--font-serif);
+  color: var(--ink-body);
+  max-height: 84px;
+  overflow: auto;
+  margin: 0;
+}
+.pane-counter {
+  font: 500 13px/18px var(--font-ui);
+  color: var(--ink-2);
+}

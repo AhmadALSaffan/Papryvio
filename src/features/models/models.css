@@ -1,0 +1,237 @@
+.msetup {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mchoices {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 14px;
+  margin: 0;
+  font: 400 13px/18px var(--font-ui);
+}
+.mchoices dt {
+  color: var(--ink-2);
+}
+.mchoices dd {
+  margin: 0;
+}
+.mproviders {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mprovider {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--paper-band);
+}
+.mprovider p {
+  margin: 0;
+}
+.mprovider-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.mprovider-head .link-btn {
+  margin-inline-start: auto;
+}
+.pill.local {
+  color: var(--ok);
+  border-color: #b9cfbf;
+  background: #e7f0e9;
+}
+.pill.cloud {
+  color: var(--warn);
+}
+.consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font: 400 13px/19px var(--font-ui);
+}
+.consent input {
+  accent-color: var(--burgundy);
+  margin-top: 3px;
+}
+.mpick {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 10px;
+  align-items: end;
+}
+.mpick label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 500 12px/16px var(--font-ui);
+  color: var(--ink-2);
+}
+.mpick select {
+  height: 30px;
+}
+.madd {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mcards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.mgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+.mgroup:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+.mgroup-title {
+  margin: 0;
+  font: 600 13px/18px var(--font-ui);
+  color: var(--ink);
+}
+.mgroup > p {
+  margin: -4px 0 0;
+}
+.mcard {
+  --ring-gap: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  text-align: start;
+  font: 400 12px/17px var(--font-ui);
+  color: var(--ink-2);
+}
+.mcard-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.mcard strong {
+  font: 600 13px/18px var(--font-ui);
+  color: var(--ink);
+}
+.mcard:hover,
+.mtile:hover {
+  background: var(--chrome);
+}
+.mcard.on,
+.mtile.on {
+  border-color: var(--burgundy);
+  background: var(--burgundy-tint);
+}
+.mtiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+}
+.mtile {
+  --ring-gap: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  text-align: start;
+  font: 500 12.5px/16px var(--font-ui);
+  color: var(--ink);
+}
+.mtile > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.plogo {
+  flex: none;
+  display: inline-block;
+  object-fit: contain;
+}
+.plogo.mono {
+  background-color: currentColor;
+  color: var(--ink);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+.plogo.generic {
+  display: inline-grid;
+  place-items: center;
+  color: var(--ink-2);
+}
+.mform-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 13px/18px var(--font-ui);
+}
+.mfield {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 500 12px/16px var(--font-ui);
+  color: var(--ink-2);
+}
+.mfield .field {
+  height: 32px;
+}
+.mform {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+.mform p {
+  margin: 0;
+}
+.mrow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.mrow .field {
+  flex: 1;
+  min-width: 140px;
+  height: 32px;
+}
+.device {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.device-code {
+  font: 600 22px/28px var(--font-mono);
+  letter-spacing: 0.12em;
+  padding: 6px 12px;
+  border: 1px dashed var(--burgundy-soft);
+  border-radius: var(--radius);
+  background: var(--paper);
+}

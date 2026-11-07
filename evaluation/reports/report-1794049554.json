@@ -1,0 +1,24 @@
+{
+  "dataset": "../evaluation/datasets/smoke.jsonl",
+  "papers": [
+    "two-pages.pdf"
+  ],
+  "k": 5,
+  "index_ms": 119,
+  "embedding_model": null,
+  "chat_model": null,
+  "chunker_version": 1,
+  "prompt_version": 1,
+  "retrieval": {
+    "lexical": {
+      "questions": 3,
+      "hit_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "median_ms": 1,
+      "p95_ms": 2
+    }
+  },
+  "answers": [],
+  "os": "windows x86_64"
+}

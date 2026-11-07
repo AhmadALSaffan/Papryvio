@@ -1,0 +1,150 @@
+.icon-dir {
+  flex: none;
+}
+:root[dir='rtl'] .icon-dir {
+  transform: scaleX(-1);
+}
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 37, 33, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 24px;
+}
+.dialog {
+  --ring-gap: var(--paper);
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 40px rgba(36, 37, 33, 0.22), 0 1px 3px rgba(36, 37, 33, 0.12);
+  max-width: 100%;
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 16px 8px 20px;
+}
+:root[dir='rtl'] .dialog-head {
+  padding: 16px 20px 8px 16px;
+}
+.dialog-head h2 {
+  margin: 0;
+  font: 600 16px/22px var(--font-ui);
+}
+.dialog-body {
+  padding: 4px 20px 16px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font: 400 14px/21px var(--font-ui);
+  color: var(--ink-body);
+}
+.dialog-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--rule);
+  background: var(--chrome);
+}
+
+.toasts {
+  position: fixed;
+  inset-block-end: 16px;
+  inset-inline-end: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 60;
+  max-width: 420px;
+}
+.toast {
+  --ring-gap: var(--paper);
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 10px 10px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 6px 20px rgba(36, 37, 33, 0.14);
+  font: 400 13px/19px var(--font-ui);
+}
+.toast.warn {
+  border-color: var(--warn-rule);
+  background: var(--warn-bg);
+}
+.toast.warn svg {
+  color: var(--warn);
+}
+.toast.error {
+  border-color: var(--error-rule);
+  background: var(--error-bg);
+}
+.toast.error svg {
+  color: var(--error);
+}
+.toast .ref {
+  display: block;
+  font: 400 11px/16px var(--font-mono);
+  color: var(--ink-2);
+}
+
+.menu {
+  position: absolute;
+  z-index: 40;
+  min-width: 240px;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(36, 37, 33, 0.18);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.menu-item {
+  --ring-gap: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  text-align: start;
+  font: 400 13px/18px var(--font-ui);
+}
+.menu-item:hover,
+.menu-item[aria-checked='true'] {
+  background: var(--chrome);
+}
+.menu-item[aria-checked='true'] {
+  font-weight: 600;
+  color: var(--burgundy);
+}
+.menu-item .count {
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 400;
+}
+.menu-sep {
+  height: 1px;
+  background: var(--rule);
+  margin: 4px 0;
+}
+.menu-item.danger {
+  color: var(--error);
+}
